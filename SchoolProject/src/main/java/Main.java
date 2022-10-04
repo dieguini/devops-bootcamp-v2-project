@@ -1,9 +1,12 @@
 import models.School;
+import models.Student;
+import models.Teacher;
 import repositories.StudentRepository;
 import services.AccessValidator;
 import services.ReadDataService;
 import services.WriteDataService;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -11,12 +14,13 @@ public class Main {
         StudentRepository studentRepository = new StudentRepository();
 
         ReadDataService readDataService = new ReadDataService();
-        var students = readDataService.readStudentsDataFromJson();
+        List<Student> students = readDataService.readStudentsDataFromJson();
+        System.out.println(students);
         WriteDataService writeDataService = new WriteDataService(studentRepository);
         writeDataService.writeStudentsDataToRepository(students);
 
         Scanner scanner = new Scanner(System.in);
-        var school = new School("American School");
+        School school = new School("American School");
 
         System.out.println("=============================");
         System.out.println("Welcome to " + school.getName());
@@ -37,13 +41,13 @@ public class Main {
 
             switch (option) {
                 case "1":
-                    var teacher = accessValidator.verifyTeacherAccess(code);
+                    Teacher teacher = accessValidator.verifyTeacherAccess(code);
                     if (teacher != null) {
                         access = true;
                         break;
                     }
                 case "2":
-                    var student = accessValidator.verifyStudentAccess(code);
+                    Student student = accessValidator.verifyStudentAccess(code);
                     if (student != null) {
                         access = true;
                         break;
