@@ -2,6 +2,7 @@ import models.School;
 import models.Student;
 import models.Teacher;
 import repositories.StudentRepository;
+import repositories.interfaces.IStudentRepository;
 import services.AccessValidator;
 import services.ReadDataService;
 import services.WriteDataService;
@@ -15,7 +16,11 @@ public class Main {
 
         ReadDataService readDataService = new ReadDataService();
         List<Student> students = readDataService.readStudentsDataFromJson();
-        System.out.println(students);
+
+        for(Student student : students){
+            System.out.println(student);
+        }
+
         WriteDataService writeDataService = new WriteDataService(studentRepository);
         writeDataService.writeStudentsDataToRepository(students);
 

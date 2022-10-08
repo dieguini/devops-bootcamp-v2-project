@@ -3,6 +3,7 @@ package services;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import models.Student;
+import models.Teacher;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,5 +34,25 @@ public class ReadDataService {
         }
 
         return students;
+    }
+
+    public List<Teacher> readTeachersDataFromJson(){
+        List<Teacher> teachers = null;
+            
+        try {
+            Gson gson = new Gson();
+            String filename="SchoolProject/src/main/resources/teachers.json";
+            Path pathToFile = Paths.get(filename);
+            
+            Reader reader = Files.newBufferedReader(pathToFile);
+
+            teachers = gson.fromJson(reader, new TypeToken<List<Teacher>>() {}.getType());
+            reader.close();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return teachers;
     }
 }
