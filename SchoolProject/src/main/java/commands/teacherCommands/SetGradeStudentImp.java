@@ -19,7 +19,10 @@ public class SetGradeStudentImp implements ITeacherOperations {
 
     @Override
     public void execute() {
-        this.teacherReciver.setGradeStudent(this.student, this.grade);
+        this.student = this.teacherReciver.setGradeStudent(this.student, this.grade);
     }
     
+    public Student getStudent(){
+        return this.student;
+    }
 }

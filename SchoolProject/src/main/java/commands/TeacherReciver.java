@@ -32,8 +32,10 @@ public class TeacherReciver {
         return this.studentRepository.getPersonByCode(code);
     }
 
-    public void setGradeStudent(Student student, Grade grade){
-        System.out.println("Setting grade: "+grade);
+    public Student setGradeStudent(Student student, Grade grade){
+        System.out.println("####################################");
+        System.out.println("Setting grade for student '"+ student.getName() +"': "+grade);
         student.setGrade(grade);
+        return student;
     }
 }
