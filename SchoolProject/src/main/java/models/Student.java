@@ -11,7 +11,7 @@ public class Student {
     private Score score;
 
     public Student(String name, int age, Grade grade) {
-        this.code = "ST" + (int)(Math.random() * 100 + 1) + name;
+        this.code = "ST-" + (int)(Math.random() * 100 + 1)+ "-" + name;
         this.name = name;
         this.age = age;
         this.grade = grade;
@@ -99,8 +99,9 @@ public class Student {
     public String toString() {
         // TODO Auto-generated method stub
         //return super.toString();
-        return String.format("Student '%1$s' age '%2$s' grade '%3$s' score '%4$s'", 
+        return String.format("Student: '%1$s' code '%2$s' age '%3$s' grade '%4$s' score '%5$s'", 
             getName(),
+            getCode(),
             getAge(),
             getGrade(),
             getScore()
