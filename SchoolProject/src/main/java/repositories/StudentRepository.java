@@ -1,12 +1,10 @@
 package repositories;
 
 import models.Student;
-import repositories.interfaces.IPersonRepository;
 import repositories.interfaces.IStudentRepository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class StudentRepository implements IStudentRepository {
     private List<Student> students;
@@ -22,11 +20,10 @@ public class StudentRepository implements IStudentRepository {
     }
 
     @Override
-    public Optional<Student> getPersonByCode(String code) {
-        Student std = students.stream().filter(
+    public Student getPersonByCode(String code) {
+        return students.stream().filter(
             student -> student.getCode().equals(code)
             ).findAny().orElse(null);
-        return Optional.of(std);
     }
 
     @Override

@@ -1,13 +1,10 @@
 package repositories;
 
-import models.Student;
 import models.Teacher;
-import repositories.interfaces.IPersonRepository;
 import repositories.interfaces.ITeacherRepository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class TeacherRepository implements ITeacherRepository {
     private List<Teacher> teachers;
@@ -22,11 +19,11 @@ public class TeacherRepository implements ITeacherRepository {
     }
 
     @Override
-    public Optional<Teacher> getPersonByCode(String code) {
-        Teacher tch = teachers.stream().filter(
+    public Teacher getPersonByCode(String code) {
+        return getAll().stream().filter(
             teacher -> teacher.getCode().equals(code)
-        ).findAny().orElse(null);
-        return Optional.of(tch);
+        ).findFirst()
+        .orElse(null);
     }
 
     @Override
