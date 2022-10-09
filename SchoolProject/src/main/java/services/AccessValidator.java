@@ -1,25 +1,28 @@
 package services;
 
-import models.Student;
-import models.Teacher;
-import repositories.StudentRepository;
-import repositories.TeacherRepository;
+import repositories.interfaces.IPersonRepository;
 
-public class AccessValidator {
-    private StudentRepository studentRepository;
-    private TeacherRepository teacherRepository;
+public class AccessValidator<T> {
+    //private StudentRepository studentRepository;
+    //private TeacherRepository teacherRepository;
+    IPersonRepository iPersonRepository;
 
-    public AccessValidator(StudentRepository studentRepository) {
-        this.studentRepository = studentRepository;
-        this.teacherRepository = new TeacherRepository();
+    public AccessValidator(IPersonRepository iPersonRepository) {
+        this.iPersonRepository = iPersonRepository;
     }
 
-    public Student verifyStudentAccess(String code) {
-        System.out.println("size: " + this.studentRepository.getAllStudents().size());
-        return this.studentRepository.getStudentByCode(code);
+    /* public Optional<Student> verifyStudentAccess(String code) {
+        System.out.println("size: " + this.iStudentRepository.getAll().size());
+        return this.iStudentRepository.getPersonByCode(code);
     }
 
     public Teacher verifyTeacherAccess(String code) {
+        System.out.println("size: " + this.studentRepository.getAll().size());
         return this.teacherRepository.getTeacherByCode(code);
+    } */
+
+    public Object verifyAccess(String code) {
+        System.out.println("size: " + this.iPersonRepository.getAll().size());
+        return this.iPersonRepository.getPersonByCode(code);
     }
 }
