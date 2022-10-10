@@ -97,8 +97,6 @@ public class Student {
 
     @Override
     public String toString() {
-        // TODO Auto-generated method stub
-        //return super.toString();
         return String.format("Student: '%1$s' code '%2$s' age '%3$s' grade '%4$s' score '%5$s'", 
             getName(),
             getCode(),
@@ -106,7 +104,6 @@ public class Student {
             getGrade(),
             getScore()
         );
-        //return "Student {1} score {2}";
     }
 
 }

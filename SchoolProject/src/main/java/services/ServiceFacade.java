@@ -2,24 +2,30 @@ package services;
 
 import java.util.List;
 
-import repositories.interfaces.IPersonRepository;
+import models.Student;
+import models.Subject;
+import models.Teacher;
+import repositories.interfaces.IRepository;
 
 public class ServiceFacade {
     
     WriteDataService writeDataService;
     private AccessValidator accessValidator;
+    private ReadDataService readDataService;
 
-    public ServiceFacade(){}
+    public ServiceFacade(){
+        this.readDataService = new ReadDataService();
+    }
 
     /**
      * Method that accepts any reposytory for access control code
      * 
-     * @param iPersonRepository
+     * @param iRepository
      * @param code
      * @return Any kind of object (Teacher or Student) depending on repository
      */
-    public Object validateAccess(IPersonRepository iPersonRepository, String code){
-        accessValidator = new AccessValidator(iPersonRepository);
+    public Object validateAccess(IRepository iRepository, String code){
+        accessValidator = new AccessValidator(iRepository);
         return accessValidator.verifyAccess(code);
     }
 
@@ -30,15 +36,27 @@ public class ServiceFacade {
      *  - WriteDataService
      * 
      * @param <T>
-     * @param iPersonRepository
+     * @param iRepository
      * @param objectList
      */
     public <T> void readAndWriteRepoService(
-            IPersonRepository iPersonRepository,
+            IRepository iRepository,
             List<T> objList
         ){
 
-        writeDataService = new WriteDataService(iPersonRepository);
+        writeDataService = new WriteDataService(iRepository);
         writeDataService.writeDataToRepository(objList);
+    }
+
+    public List<Student> readStudentsDataFromJson(){
+        return readDataService.readStudentsDataFromJson();
+    }
+
+    public List<Teacher> readTeachersDataFromJson(){
+        return readDataService.readTeachersDataFromJson();
+    }
+
+    public List<Subject> readSubjectsDataFromJson(){
+        return readDataService.readSubjectsDataFromJson();
     }
 }

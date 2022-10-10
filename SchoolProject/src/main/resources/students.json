@@ -12,5 +12,12 @@
     "age": "14",
     "grade": "MIDDLE_SCHOOL",
     "score": "C"
+  },
+  {
+    "code": "ST-03-Perl",
+    "name": "Perl Jam",
+    "age": "15",
+    "grade": "ELEMENTARY_SCHOOL",
+    "score": "D"
   }
 ]

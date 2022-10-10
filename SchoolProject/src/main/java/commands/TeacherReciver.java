@@ -29,7 +29,7 @@ public class TeacherReciver {
     public Student selectStudent(String code){
         System.out.println("####################################");
         System.out.println("Selecting student with code: "+code);
-        return this.studentRepository.getPersonByCode(code);
+        return this.studentRepository.getByCode(code);
     }
 
     public Student setGradeStudent(Student student, Grade grade){

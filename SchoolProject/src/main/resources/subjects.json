@@ -1,0 +1,32 @@
+[
+    {
+        "code": "MATH-01",
+        "name": "Mathematics",
+        "grade": "ELEMENTARY_SCHOOL"
+    },
+    {
+        "code": "MATH-02",
+        "name": "Mathematics",
+        "grade": "MIDDLE_SCHOOL"
+    },
+    {
+        "code": "MATH-03",
+        "name": "Mathematics",
+        "grade": "HIGH_SCHOOL"
+    },
+    {
+        "code": "TEC-01",
+        "name": "Technology",
+        "grade": "MIDDLE_SCHOOL"
+    },
+    {
+        "code": "TEC-02",
+        "name": "Technology",
+        "grade": "HIGH_SCHOOL"
+    },
+    {
+        "code": "LAN-01",
+        "name": "Languages",
+        "grade": "ELEMENTARY_SCHOOL"
+    }
+]

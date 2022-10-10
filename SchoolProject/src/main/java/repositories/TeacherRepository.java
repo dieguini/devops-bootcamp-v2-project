@@ -19,7 +19,7 @@ public class TeacherRepository implements ITeacherRepository {
     }
 
     @Override
-    public Teacher getPersonByCode(String code) {
+    public Teacher getByCode(String code) {
         return getAll().stream().filter(
             teacher -> teacher.getCode().equals(code)
         ).findFirst()
@@ -27,7 +27,7 @@ public class TeacherRepository implements ITeacherRepository {
     }
 
     @Override
-    public <S extends Teacher> S addPerson(S s) {
+    public <S extends Teacher> S add(S s) {
         this.teachers.add(s);
         return s;
     }

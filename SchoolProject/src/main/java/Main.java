@@ -1,7 +1,9 @@
 import models.School;
 import models.Student;
+import models.Subject;
 import models.Teacher;
 import repositories.StudentRepository;
+import repositories.SubjectRepository;
 import repositories.TeacherRepository;
 import services.AccessValidator;
 import services.ReadDataService;
@@ -11,13 +13,6 @@ import services.WriteDataService;
 import java.util.List;
 import java.util.Scanner;
 
-import commands.Invoker;
-import commands.TeacherReciver;
-import commands.teacherCommands.ListStudentsByGradeCommandImp;
-import commands.teacherCommands.ListStudentsCommandImp;
-import commands.teacherCommands.SelectStudentCommandImp;
-import commands.teacherCommands.SetGradeStudentImp;
-import helpers.Grade;
 import menu.TeacherMenu;
 
 public class Main {
@@ -26,21 +21,15 @@ public class Main {
 
         StudentRepository studentRepository = new StudentRepository();
         TeacherRepository teacherRepository = new TeacherRepository();
+        SubjectRepository subjectRepository = new SubjectRepository();
 
-        ReadDataService readDataService = new ReadDataService();
-        List<Student> students = readDataService.readStudentsDataFromJson();
-        List<Teacher> teachers = readDataService.readTeachersDataFromJson();
+        List<Student> students = serviceFacade.readStudentsDataFromJson();
+        List<Teacher> teachers = serviceFacade.readTeachersDataFromJson();
+        List<Subject> subjects = serviceFacade.readSubjectsDataFromJson();
 
         serviceFacade.readAndWriteRepoService(studentRepository, students);
         serviceFacade.readAndWriteRepoService(teacherRepository, teachers);
-        
-        /* for(Student student : studentRepository.getAll()){
-            System.out.println(student);
-        }
-
-        for(Teacher teacher : teacherRepository.getAll()){
-            System.out.println(teacher);
-        } */
+        serviceFacade.readAndWriteRepoService(subjectRepository, subjects);
 
         Scanner scanner = new Scanner(System.in);
         School school = new School("American School");
@@ -56,9 +45,12 @@ public class Main {
         String option = scanner.nextLine();
         boolean access = false;
 
+        //TODO strategy pattern for options could work better
+        //Strategy for teachers
+        //Strategy for students
+
         while (!access) {
             System.out.println("Please enter your code");
-
             String code = scanner.nextLine();
 
             switch (option) {
@@ -80,7 +72,6 @@ public class Main {
                         System.out.println("4. Exit");
                         String teacherOption = scanner.nextLine();
                         Invoker invoker = new Invoker(); */
-
                         /* switch(teacherOption){
                             case "1":
                                 ListStudentsCommandImp lsc = new ListStudentsCommandImp(teacherReciver);
@@ -126,14 +117,18 @@ public class Main {
 
                             break;
                         } */
-
                         break;
                     }
 
                 case "2":
                     Student student = (Student) serviceFacade.validateAccess(studentRepository, code);
-                    System.out.println("Welcome Student: " + student.getName());
                     if (student != null) {
+                        System.out.println("Welcome Student: " + student.getName()+ " grade: " + student.getGrade());
+                        System.out.println("Subject list: ");
+                        List<Subject> mySubjects = subjectRepository.getSubjectsByStudent(student);
+                        for(Subject sub : mySubjects){
+                            System.out.println(sub);
+                        }
                         access = true;
                         break;
                     }

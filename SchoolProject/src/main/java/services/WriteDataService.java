@@ -1,17 +1,17 @@
 package services;
 
-import repositories.interfaces.IPersonRepository;
+import repositories.interfaces.IRepository;
 
 import java.util.List;
 
 public class WriteDataService {
-    private IPersonRepository iPersonRepository;
+    private IRepository iRepository;
 
-    public WriteDataService(IPersonRepository iPersonRepository){
-        this.iPersonRepository = iPersonRepository;
+    public WriteDataService(IRepository iRepository){
+        this.iRepository = iRepository;
     }
 
-    public <T> void writeDataToRepository(List<T> persons){
-        persons.forEach(person -> this.iPersonRepository.addPerson(person));
+    public <T> void writeDataToRepository(List<T> objects){
+        objects.forEach(obj -> this.iRepository.add(obj));
     }
 }

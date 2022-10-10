@@ -8,6 +8,7 @@ import commands.teacherCommands.ListStudentsByGradeCommandImp;
 import commands.teacherCommands.ListStudentsCommandImp;
 import helpers.Grade;
 import models.Teacher;
+
 import repositories.StudentRepository;
 
 public class TeacherMenu {
@@ -35,7 +36,7 @@ public class TeacherMenu {
         Scanner scanner = new Scanner(System.in);
         String teacherOption = scanner.nextLine();
 
-        while(teacherOption != "4"){
+        while(!teacherOption.equals("4")){
             switch(teacherOption){
                 case "1":
                     ListStudentsCommandImp lsc = new ListStudentsCommandImp(this.teacherReciver);
@@ -57,6 +58,8 @@ public class TeacherMenu {
                     teacherSubMenu.showGrades();
                     String code = teacherSubMenu.showGrades();
                     teacherSubMenu.enterGrade(code);
+                break;
+                case "4":
                 break;
                 default:
                     System.out.println("Incorrect option");
